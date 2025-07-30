@@ -1,0 +1,27 @@
+{
+  "name": "osano-clone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm db:dev\" \"pnpm api:dev\"",
+    "prod": "concurrently \"pnpm db:prod\" \"pnpm api:prod\"",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "clean": "pnpm -r clean",
+    "api:dev": "pnpm --filter api dev",
+    "api:prod": "pnpm --filter api prod",
+    "api:build": "pnpm --filter api build",
+    "api:serve": "pnpm --filter api serve",
+    "db:dev": "pnpm --filter db dev",
+    "db:prod": "pnpm --filter db prod",
+    "db:stop": "pnpm --filter db stop",
+    "db:clean": "pnpm --filter db clean",
+    "db:logs": "pnpm --filter db logs"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "concurrently": "^8.2.0"
+  },
+  "packageManager": "pnpm@9.4.0"
+}

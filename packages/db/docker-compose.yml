@@ -1,0 +1,63 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: osano-clone-db-mongodb-dev
+    profiles:
+      - mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-password}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE:-osano-clone}
+    volumes:
+      - osano_clone_mongodb_data:/data/db
+      - ./init-scripts/mongo:/docker-entrypoint-initdb.d
+    networks:
+      - osano-clone-network
+    labels:
+      - "project=osano-clone"
+      - "service=database"
+      - "database=mongodb"
+      - "environment=development"
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: osano-clone-db-postgres-prod
+    profiles:
+      - postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-osano-clone}
+    volumes:
+      - osano_clone_postgres_data:/var/lib/postgresql/data
+      - ./init-scripts/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - osano-clone-network
+    labels:
+      - "project=osano-clone"
+      - "service=database"
+      - "database=postgres"
+      - "environment=production"
+
+volumes:
+  osano_clone_mongodb_data:
+    name: osano-clone-mongodb-data
+    labels:
+      - "project=osano-clone"
+      - "database=mongodb"
+  osano_clone_postgres_data:
+    name: osano-clone-postgres-data
+    labels:
+      - "project=osano-clone"
+      - "database=postgres"
+
+networks:
+  osano-clone-network:
+    name: osano-clone-network
+    driver: bridge
+    labels:
+      - "project=osano-clone"

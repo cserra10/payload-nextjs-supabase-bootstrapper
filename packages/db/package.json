@@ -1,0 +1,14 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose --profile mongo up -d",
+    "prod": "docker-compose --profile postgres up -d",
+    "stop": "docker-compose down",
+    "clean": "docker-compose down -v",
+    "logs": "docker-compose logs -f",
+    "mongo": "docker-compose --profile mongo up -d",
+    "postgres": "docker-compose --profile postgres up -d"
+  }
+}

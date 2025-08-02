@@ -1,6 +1,6 @@
 # Database Package
 
-This package manages database containers for the Osano Clone project.
+This package manages database containers for the project.
 
 ## Setup
 
@@ -19,11 +19,12 @@ This package manages database containers for the Osano Clone project.
 
 ## Connection URLs
 
-- **MongoDB**: `mongodb://admin:password@localhost:27017/osano-clone?authSource=admin`
-- **PostgreSQL**: `postgresql://admin:password@localhost:5432/osano-clone`
+- **MongoDB**: `mongodb://admin:password@localhost:27017/mongodb?authSource=admin`
+- **PostgreSQL**: `postgresql://admin:password@localhost:5432/postgres`
 
 ## Docker Compose Profiles
 
 The setup uses Docker Compose profiles to separate environments:
+
 - `mongo` profile for development
 - `postgres` profile for production

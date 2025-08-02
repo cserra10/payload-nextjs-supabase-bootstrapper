@@ -1,18 +1,31 @@
 {
-  "name": "osano-clone",
+  "name": "payload-nextjs-supabase-bootstrapper",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"pnpm db:dev\" \"pnpm api:dev\"",
-    "prod": "concurrently \"pnpm db:prod\" \"pnpm api:prod\"",
+    "setup-env": "bash setup-env.sh",
+    "dev": "concurrently \"pnpm db:dev\" \"pnpm api:dev\" \"pnpm web:dev\"",
+    "dev-with-demo": "concurrently \"pnpm db:dev\" \"pnpm api:dev\" \"pnpm web:dev\" \"pnpm web-demo:dev\"",
+    "prod": "concurrently \"pnpm db:prod\" \"pnpm api:prod\" \"pnpm web:start\" \"pnpm web-demo:start\"",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "lint": "pnpm -r lint",
+    "lint": "eslint . --fix && pnpm -r lint",
+    "lint:check": "eslint .",
+    "format": "prettier --write . && pnpm -r format",
+    "format:check": "prettier --check .",
     "clean": "pnpm -r clean",
     "api:dev": "pnpm --filter api dev",
     "api:prod": "pnpm --filter api prod",
     "api:build": "pnpm --filter api build",
     "api:serve": "pnpm --filter api serve",
+    "web:dev": "pnpm --filter web dev",
+    "web:build": "pnpm --filter web build",
+    "web:start": "pnpm --filter web start",
+    "web:lint": "pnpm --filter web lint",
+    "web-demo:dev": "pnpm --filter web-demo dev",
+    "web-demo:build": "pnpm --filter web-demo build",
+    "web-demo:start": "pnpm --filter web-demo start",
+    "web-demo:lint": "pnpm --filter web-demo lint",
     "db:dev": "pnpm --filter db dev",
     "db:prod": "pnpm --filter db prod",
     "db:stop": "pnpm --filter db stop",
@@ -20,8 +33,26 @@
     "db:logs": "pnpm --filter db logs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@types/node": "^24.0.3",
+    "concurrently": "^8.2.0",
+    "eslint": "^9.29.0",
+    "eslint-import-resolver-typescript": "^4.4.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
     "turbo": "^2.0.0",
-    "concurrently": "^8.2.0"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.1"
   },
-  "packageManager": "pnpm@9.4.0"
+  "packageManager": "pnpm@9.4.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "unrs-resolver"
+    ]
+  }
 }

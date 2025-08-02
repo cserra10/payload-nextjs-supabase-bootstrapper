@@ -21,9 +21,16 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Local env files
-.env*.local
-.env
+# Local env files (all .env files in all directories)
+.env*
+!.env.example
+!.env.template
+!.env.sample
+test.env
+
+# Master environment files (keep local, exclude from repo)
+.master-env.*
+!master-env.example
 
 # Vercel
 .vercel

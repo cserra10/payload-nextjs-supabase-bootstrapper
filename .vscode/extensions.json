@@ -1,0 +1,52 @@
+{
+  "recommendations": [
+    // Essential for linting and formatting
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    
+    // TypeScript support
+    "ms-vscode.vscode-typescript-next",
+    
+    // React development
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "ms-vscode.vscode-json",
+    
+    // Git integration
+    "eamodio.gitlens",
+    
+    // Markdown support
+    "yzhang.markdown-all-in-one",
+    
+    // Package.json helper
+    "christian-kohler.npm-intellisense",
+    
+    // Path intellisense
+    "christian-kohler.path-intellisense",
+    
+    // Bracket pair colorization
+    "CoenraadS.bracket-pair-colorizer-2",
+    
+    // Auto close/rename tags
+    "formulahendry.auto-close-tag",
+    
+    // Better comments
+    "aaron-bond.better-comments",
+    
+    // Environment files
+    "mikestead.dotenv",
+    
+    // Thunder Client for API testing
+    "rangav.vscode-thunder-client",
+    
+    // Docker support
+    "ms-azuretools.vscode-docker",
+    
+    // MongoDB support
+    "mongodb.mongodb-vscode"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript",
+    "hookyqr.beautify"
+  ]
+}

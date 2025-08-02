@@ -1,63 +1,63 @@
 services:
   mongodb:
     image: mongo:7.0
-    container_name: osano-clone-db-mongodb-dev
+    container_name: db-mongodb-dev
     profiles:
       - mongo
     ports:
-      - "27017:27017"
+      - '27017:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-password}
-      MONGO_INITDB_DATABASE: ${MONGO_DATABASE:-osano-clone}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE:-mongodb}
     volumes:
-      - osano_clone_mongodb_data:/data/db
+      - mongodb_data:/data/db
       - ./init-scripts/mongo:/docker-entrypoint-initdb.d
     networks:
-      - osano-clone-network
+      - db-network
     labels:
-      - "project=osano-clone"
-      - "service=database"
-      - "database=mongodb"
-      - "environment=development"
+      - 'project=payload-nextjs-supabase'
+      - 'service=database'
+      - 'database=mongodb'
+      - 'environment=development'
 
   postgres:
     image: postgres:16-alpine
-    container_name: osano-clone-db-postgres-prod
+    container_name: db-postgres-prod
     profiles:
       - postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-admin}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: ${POSTGRES_DB:-osano-clone}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
     volumes:
-      - osano_clone_postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
       - ./init-scripts/postgres:/docker-entrypoint-initdb.d
     networks:
-      - osano-clone-network
+      - db-network
     labels:
-      - "project=osano-clone"
-      - "service=database"
-      - "database=postgres"
-      - "environment=production"
+      - 'project=payload-nextjs-supabase'
+      - 'service=database'
+      - 'database=postgres'
+      - 'environment=production'
 
 volumes:
-  osano_clone_mongodb_data:
-    name: osano-clone-mongodb-data
+  mongodb_data:
+    name: mongodb-data
     labels:
-      - "project=osano-clone"
-      - "database=mongodb"
-  osano_clone_postgres_data:
-    name: osano-clone-postgres-data
+      - 'project=payload-nextjs-supabase'
+      - 'database=mongodb'
+  postgres_data:
+    name: postgres-data
     labels:
-      - "project=osano-clone"
-      - "database=postgres"
+      - 'project=payload-nextjs-supabase'
+      - 'database=postgres'
 
 networks:
-  osano-clone-network:
-    name: osano-clone-network
+  db-network:
+    name: db-network
     driver: bridge
     labels:
-      - "project=osano-clone"
+      - 'project=payload-nextjs-supabase'
